@@ -5,6 +5,7 @@ import {
   Header,
   Redirect,
   Query,
+  Render,
 } from '@nestjs/common';
 import { AppService } from './app.service';
 
@@ -15,8 +16,12 @@ export class AppController {
   @Get()
   @HttpCode(200)
   @Header('Cache-Control', 'none')
-  getHello(): string {
-    return this.appService.getHello();
+  @Render('default/index')
+  getHello(): object {
+    return {
+      name: '王二',
+      age: 33,
+    };
   }
 
   @Get('redirect')

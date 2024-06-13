@@ -10,6 +10,11 @@ async function bootstrap() {
   app.useStaticAssets('public', {
     prefix: '/static/',
   }); //http://localhost:3000/static/header.jpg
+
+  //模版引擎
+  app.setBaseViewsDir('views');
+  app.setViewEngine('ejs');
+
   await app.listen(3000);
 }
 bootstrap();
