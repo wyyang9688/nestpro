@@ -8,7 +8,7 @@ refreshTokenExpire: 7
 
 # 默认密码
 defaultPassword: 123456
-
+DATABASE_URL: mysql://root:abcd1234@localhost:3306/nest
 # 数据库配置
 datasource:
   driverName: mysql
