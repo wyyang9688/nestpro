@@ -15,10 +15,12 @@ import { User as UserModel, Post as PostModel } from '@prisma/client';
 @Controller('user')
 export class UserController {
   constructor(private readonly userService: UserService) {}
-  @Post('user')
+  @Post('add')
   async signupUser(
     @Body() userData: { name: string; email: string },
   ): Promise<UserModel> {
+    console.log(new Date().getTime())
+    console.log(userData)
     return this.userService.createUser(userData);
   }
   // @Post()
