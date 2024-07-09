@@ -5,6 +5,7 @@ import { CatsService } from './cats/cats.service';
 import { CatsModule } from './cats/cats.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { getConfig } from './utils';
+import { UserModule } from './user/user.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -13,6 +14,7 @@ import { getConfig } from './utils';
       load: [getConfig], // 加载配置文件
     }),
     CatsModule,
+    UserModule,
   ],
   controllers: [AppController],
   providers: [AppService, CatsService, ConfigService],
