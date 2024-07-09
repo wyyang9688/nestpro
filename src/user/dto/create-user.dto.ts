@@ -2,11 +2,9 @@ import { IsString, Matches, MaxLength, MinLength } from 'class-validator';
 import { User, Prisma } from '@prisma/client';
 export class CreateUserDto  implements Prisma.UserCreateInput {
     @IsString()
-    @MinLength(40)
+    @MinLength(4)
     @MaxLength(20)
-    @Matches(/((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/, {
-      message: 'password is too weak',
-    })
+   
   name: string;
 
   
@@ -14,9 +12,9 @@ export class CreateUserDto  implements Prisma.UserCreateInput {
     @IsString()
     @MinLength(8)
     @MaxLength(32)
-    @Matches(/((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/, {
-      message: 'password is too weak',
-    })
+    // @Matches(/((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/, {
+    //   message: 'email is too weak',
+    // })
   email: string;
 
   id?: number;

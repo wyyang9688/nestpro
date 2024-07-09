@@ -2,7 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { getConfig } from './utils';
-
+import {ValidationPipe} from '@nestjs/common'
 export const config = getConfig();
 const PORT = config.PORT || 3000;
 const PREFIX = config.PREFIX || '/';
@@ -23,7 +23,9 @@ async function bootstrap() {
 
   // 给请求添加prefix
   app.setGlobalPrefix(PREFIX);
-
+  app.useGlobalPipes(
+    new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true }),
+  );
   await app.listen(PORT, () => {
     console.log(
       `服务已经启动,接口请访问:http://wwww.localhost:${PORT}/${PREFIX}`,

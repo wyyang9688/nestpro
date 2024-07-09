@@ -17,9 +17,12 @@ export class UserController {
   constructor(private readonly userService: UserService) {}
   @Post('add')
   async signupUser(
-    @Body() userData: { name: string; email: string },
+    @Body() createUserDto: CreateUserDto,
   ): Promise<UserModel> {
     console.log(new Date().getTime())
+    // 在这里，你可以将DTO的数据转换成Prisma客户端需要的格式
+    const { name, email } = createUserDto;
+    const userData = { name: name, email: email };
     console.log(userData)
     return this.userService.createUser(userData);
   }
