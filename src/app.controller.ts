@@ -24,7 +24,6 @@ export class AppController {
     console.log('getHello');
     console.log(this.ConfigService.get('PORT'));
     // this.ConfigService.set('PORT', 3000);
-    console.log(this.ConfigService.get('PORT'));
     console.log(this.ConfigService.get('datasource.driverName'));
     return {
       name: '王二',

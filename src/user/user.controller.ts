@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Delete,
+  Query,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -16,7 +17,7 @@ export class UserController {
   constructor(private readonly userService: UserService) {}
   @Post('user')
   async signupUser(
-    @Body() userData: { name?: string; email: string },
+    @Body() userData: { name: string; email: string },
   ): Promise<UserModel> {
     return this.userService.createUser(userData);
   }
@@ -25,10 +26,12 @@ export class UserController {
   //   return this.userService.create(createUserDto);
   // }
 
-  // @Get()
-  // findAll() {
-  //   return this.userService.findAll();
-  // }
+  @Get('')
+  findAll(@Query('id') id) {
+    //http://wwww.localhost:3000/api/user?id=1
+    console.log(id)
+    return this.userService.user({id:Number(id)});
+  }
 
   // @Get(':id')
   // findOne(@Param('id') id: string) {
